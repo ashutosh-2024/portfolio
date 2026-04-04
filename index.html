@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashutosh Aswani | Resume</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeIn 1s ease-in;
+}
+
+.header h1 { font-size: 36px; }
+
+.header p { color: #94a3b8; margin-top: 10px; }
+
+.links a {
+  color: #38bdf8;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+.btn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #38bdf8;
+  color: black;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.section {
+  margin-top: 40px;
+  animation: slideUp 0.8s ease;
+}
+
+.section h2 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #38bdf8;
+  display: inline-block;
+}
+
+.card {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+ul { margin-left: 20px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.skill {
+  background: #020617;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+@keyframes slideUp {
+  from {transform: translateY(20px); opacity:0;}
+  to {transform: translateY(0); opacity:1;}
+}
+
+@media(max-width:600px){
+  .header h1 {font-size: 26px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Ashutosh Aswani</h1>
+  <p>Python Developer @ AlphaGrep (HFT) | Gold Medalist</p>
+
+  <div class="links">
+    <a href="mailto:ashutoshaswani2015@gmail.com" target="_blank" rel="noopener noreferrer">Email</a> |
+    <a href="https://www.linkedin.com/in/ashutosh-aswani-697478201/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+    <a href="https://github.com/ashutosh-2024" target="_blank" rel="noopener noreferrer">GitHub</a> |
+    <a href="https://leetcode.com/ashutosh_0207/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+  </div>
+
+  <div style="margin-top:20px;">
+  
+    <!-- VIEW RESUME -->
+    <a class="btn"
+       href="https://drive.google.com/file/d/1FONZVOuTtWqXi-DB1q9y8QBspQL45_4g/view"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="margin-right:10px;">
+       View Resume
+    </a>
+  
+    <!-- DOWNLOAD RESUME -->
+    <a class="btn"
+       href="https://drive.google.com/uc?export=download&id=1FONZVOuTtWqXi-DB1q9y8QBspQL45_4g"
+       target="_blank"
+       rel="noopener noreferrer">
+       Download Resume
+    </a>
+  
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+  <h2>Summary</h2>
+  <p>
+    Software Engineer at AlphaGrep specializing in backend systems, trading infrastructure,
+    and risk analytics. Strong expertise in Python, distributed systems, and data engineering.
+    Gold Medalist (Rank 1) from IIIT Vadodara.
+  </p>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section">
+  <h2>Experience</h2>
+
+  <div class="card">
+    <h3>AlphaGrep Securities Pvt. Ltd.</h3>
+    <p><i>Python Developer | February 2024 – Present</i></p>
+
+    <ul>
+      <li>Worked on automating the back-office operations and reconciliation process using Pandas, Polars and NumPy.</li>
+      <li>Worked with Docker, Airflow, and Redis for orchestration, and task scheduling.</li>
+      <li>Engineered an LDAP-based RBAC system for secure, audit-compliant access to database rows and internal tools.</li>
+      <li>Implemented service to apply corporate action adjustments for all major exchanges worldwide.</li>
+      <li>Build from scratch a project to help traders exercise options in American markets and take delivery of underlying futures if any. It can send contra and abandon instructions, exercise options on expiration.</li>
+      <li>Collaborate with the Risk Management team to build risk reporting tools from scratch, incorporating statistical analysis, covering daily/monthly reports on ADV calculation, option greeks, GICS-based sector analysis, liquidity metrics, portfolio allocation, benchmark comparisons, and risk-return ratios (Sharpe, Calmar, Sortino) across funds and strategy groups.</li>
+      <li>Created a RISKGUI for monitoring risk management metrics using Javascript.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Tikaj Technologies Pvt. Ltd.</h3>
+    <p><i>Python SDE Intern | December 2022 – December 2023</i></p>
+
+    <ul>
+      <li>Improved memory usage and web scraping speed by 250% with a modified BFS algorithm for a dark web crawler.</li>
+      <li>Developed a phishing simulation tool. Implemented an AI-driven phishing attack suggestion feature that tailored phishing attacks to individual targets making a practically impossible task at scale to be done within less than 30 seconds.</li>
+      <li>Built an AI-driven phishing template generator, reducing creation time from 90 minutes to 30 seconds.</li>
+      <li>Integrated 40 OSINT tools for efficient vulnerability detection in Tikaj’s EASM Platform.</li>
+      <li>Automated take down of phishing websites, and counterfeit apps, reducing the removal time by 59%.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- EDUCATION -->
+<div class="section">
+  <h2>Education</h2>
+
+  <div class="card">
+    <h3>Indian Institute of Information Technology Vadodara</h3>
+    <p>Bachelor of Technology in Computer Science Engineering</p>
+    <p>2020 – 2024 | CGPA: 9.54</p>
+    <p>🏅 Institute Rank 1 | Chairperson’s Gold Medal</p>
+  </div>
+
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section">
+  <h2>Achievements</h2>
+
+  <div class="card">
+    <ul>
+      <li>1st prize winner of SSIP AKAM Hackathon 2022 among 2000+ teams — Developed an application for topic modelling of research papers, clustering them based on identified topics and summarizing them using bigram model and k-means.</li>
+      <li>3rd prize winner in FinHack 2 hackathon conducted by MLH.</li>
+      <li>3rd prize winner in Support-a-thon hackathon conducted by MLH.</li>
+      <li>Global Rank 1303 in Google Kick Start Round E 2021.</li>
+      <li>Global Rank 1698 in Google Kick Start Round H 2022.</li>
+      <li>More than 3000 downloads on multiple Python packages published on PyPI — including tools to summarize Daily NSE Bhav copy and backtest option strategies with GUI support.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+  <h2>Skills</h2>
+
+  <div class="grid">
+    <div class="skill">Python</div>
+    <div class="skill">Docker</div>
+    <div class="skill">Airflow</div>
+    <div class="skill">Redis</div>
+    <div class="skill">RabbitMQ</div>
+    <div class="skill">AWS</div>
+    <div class="skill">MySQL</div>
+    <div class="skill">MongoDB</div>
+    <div class="skill">ClickHouse</div>
+    <div class="skill">PostgreSQL</div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
