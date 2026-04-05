@@ -6,229 +6,773 @@
 <title>Ashutosh Aswani | Resume</title>
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #111633;
+  --bg-card: #151a35;
+  --accent-primary: #00f5ff;
+  --accent-secondary: #7c3aed;
+  --text-primary: #ffffff;
+  --text-secondary: #a5b4fc;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 245, 255, 0.1);
+  --glow-color: rgba(0, 245, 255, 0.4);
+}
 
 body {
-  background: #0f172a;
-  color: #e2e8f0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Grid Background */
+.grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient(var(--accent-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--accent-primary) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+/* Gradient Orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-primary), transparent);
+  top: -200px;
+  right: -200px;
+  animation: float-1 20s infinite ease-in-out;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-secondary), transparent);
+  bottom: -150px;
+  left: -150px;
+  animation: float-2 25s infinite ease-in-out;
+}
+
+@keyframes float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 50px) scale(1.1); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -50px) scale(1.1); }
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
+/* Top Bar */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary), var(--accent-secondary));
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+  z-index: 1000;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Header */
 .header {
   text-align: center;
-  padding: 40px 20px;
-  animation: fadeIn 1s ease-in;
+  padding: 100px 20px 60px;
+  position: relative;
+  animation: fadeIn 1s ease-out;
 }
 
-.header h1 { font-size: 36px; }
+.header::before {
+  content: '';
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--accent-primary);
+  box-shadow: 0 0 20px var(--glow-color);
+}
 
-.header p { color: #94a3b8; margin-top: 10px; }
+.name {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--text-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
 
-.links a {
-  color: #38bdf8;
-  margin: 0 8px;
+.name::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+.tagline {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.social-links {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  color: var(--text-secondary);
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.social-link:hover::before {
+  left: 100%;
+}
+
+.social-link:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 20px var(--glow-color);
+  transform: translateY(-2px);
+}
+
+.cta-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .btn {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  background: #38bdf8;
-  color: black;
-  border-radius: 6px;
+  padding: 16px 40px;
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: bold;
-}
-
-.section {
-  margin-top: 40px;
-  animation: slideUp 0.8s ease;
-}
-
-.section h2 {
-  margin-bottom: 15px;
-  border-bottom: 2px solid #38bdf8;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   display: inline-block;
 }
 
-.card {
-  background: #020617;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  transition: 0.3s;
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 30px var(--glow-color);
 }
 
-.card:hover { transform: translateY(-5px); }
-
-ul { margin-left: 20px; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
 }
 
-.skill {
-  background: #020617;
-  padding: 10px;
-  border-radius: 6px;
-  text-align: center;
+.btn-primary:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
-@keyframes fadeIn {
-  from {opacity:0;}
-  to {opacity:1;}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px var(--glow-color);
 }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 0 30px var(--glow-color);
+  transform: translateY(-3px);
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sections */
+.section {
+  margin: 80px 0;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.8s ease forwards;
+}
+
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+.section:nth-child(5) { animation-delay: 0.4s; }
+.section:nth-child(6) { animation-delay: 0.5s; }
 
 @keyframes slideUp {
-  from {transform: translateY(20px); opacity:0;}
-  to {transform: translateY(0); opacity:1;}
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@media(max-width:600px){
-  .header h1 {font-size: 26px;}
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+  color: var(--text-primary);
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-primary);
+  box-shadow: 0 0 10px var(--glow-color);
+}
+
+.section-title::after {
+  content: attr(data-number);
+  position: absolute;
+  left: -50px;
+  top: 0;
+  font-size: 18px;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 35px;
+  margin-bottom: 30px;
+  position: relative;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.03), transparent);
+  transition: left 0.6s ease;
+}
+
+.card:hover::after {
+  left: 100%;
+}
+
+.card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 
+              0 0 20px var(--glow-color);
+  transform: translateY(-5px);
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 8px;
+}
+
+.card-meta {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.card-content ul {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.card-content li {
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.7;
+}
+
+.card-content li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: var(--bg-primary);
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  /* animation: pulse 2s infinite; */
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Summary Box */
+.summary-content {
+  background: rgba(0, 245, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-primary);
+  padding: 30px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.skill-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-item::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, var(--accent-primary), transparent 30deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+.skill-item::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.skill-item:hover::before {
+  opacity: 1;
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--glow-color);
+}
+
+.skill-item span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 60px 20px 40px;
+  color: var(--text-muted);
+  font-size: 14px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 100px;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+  .name { font-size: 40px; }
+  .section-title { font-size: 28px; }
+  .section-title::after { display: none; }
+  .card { padding: 25px; }
+  .social-links { gap: 15px; }
+  .cta-buttons { flex-direction: column; }
+  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--glow-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Mouse glow effect */
+.cursor-glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-color), transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+  mix-blend-mode: screen;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Top Bar -->
+<div class="top-bar"></div>
+
+<!-- Grid Background -->
+<div class="grid-background"></div>
+
+<!-- Gradient Orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
 <div class="container">
 
 <!-- HEADER -->
 <div class="header">
-  <h1>Ashutosh Aswani</h1>
-  <p>Python Developer @ AlphaGrep (HFT) | Gold Medalist</p>
+  <h1 class="name">Ashutosh Aswani</h1>
+  <p class="tagline">Python Developer @ AlphaGrep (HFT) | Gold Medalist</p>
 
-  <div class="links">
-    <a href="mailto:ashutoshaswani2015@gmail.com" target="_blank" rel="noopener noreferrer">Email</a> |
-    <a href="https://www.linkedin.com/in/ashutosh-aswani-697478201/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-    <a href="https://github.com/ashutosh-2024" target="_blank" rel="noopener noreferrer">GitHub</a> |
-    <a href="https://leetcode.com/ashutosh_0207/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+  <div class="social-links">
+    <a href="mailto:ashutoshaswani2015@gmail.com" class="social-link" target="_blank" rel="noopener noreferrer">
+      Email
+    </a>
+    <a href="https://www.linkedin.com/in/ashutosh-aswani-697478201/" class="social-link" target="_blank" rel="noopener noreferrer">
+      LinkedIn
+    </a>
+    <a href="https://github.com/ashutosh-2024" class="social-link" target="_blank" rel="noopener noreferrer">
+      GitHub
+    </a>
+    <a href="https://leetcode.com/ashutosh_0207/" class="social-link" target="_blank" rel="noopener noreferrer">
+      LeetCode
+    </a>
   </div>
 
-  <div style="margin-top:20px;">
-  
-    <!-- VIEW RESUME -->
-    <a class="btn"
+  <div class="cta-buttons">
+    <a class="btn btn-primary"
        href="https://drive.google.com/file/d/1FONZVOuTtWqXi-DB1q9y8QBspQL45_4g/view"
        target="_blank"
-       rel="noopener noreferrer"
-       style="margin-right:10px;">
-       View Resume
+       rel="noopener noreferrer">
+       <span>View Resume</span>
     </a>
   
-    <!-- DOWNLOAD RESUME -->
-    <a class="btn"
+    <a class="btn btn-secondary"
        href="https://drive.google.com/uc?export=download&id=1FONZVOuTtWqXi-DB1q9y8QBspQL45_4g"
        target="_blank"
        rel="noopener noreferrer">
-       Download Resume
+       <span>Download Resume</span>
     </a>
-  
   </div>
 </div>
 
 <!-- SUMMARY -->
 <div class="section">
-  <h2>Summary</h2>
-  <p>
+  <h2 class="section-title" data-number="01.">Summary</h2>
+  <div class="summary-content">
     Software Engineer at AlphaGrep specializing in backend systems, trading infrastructure,
     and risk analytics. Strong expertise in Python, distributed systems, and data engineering.
     Gold Medalist (Rank 1) from IIIT Vadodara.
-  </p>
+  </div>
 </div>
 
 <!-- EXPERIENCE -->
 <div class="section">
-  <h2>Experience</h2>
+  <h2 class="section-title" data-number="02.">Experience</h2>
 
   <div class="card">
-    <h3>AlphaGrep Securities Pvt. Ltd.</h3>
-    <p><i>Python Developer | February 2024 – Present</i></p>
-
-    <ul>
-      <li>Worked on automating the back-office operations and reconciliation process using Pandas, Polars and NumPy.</li>
-      <li>Worked with Docker, Airflow, and Redis for orchestration, and task scheduling.</li>
-      <li>Engineered an LDAP-based RBAC system for secure, audit-compliant access to database rows and internal tools.</li>
-      <li>Implemented service to apply corporate action adjustments for all major exchanges worldwide.</li>
-      <li>Build from scratch a project to help traders exercise options in American markets and take delivery of underlying futures if any. It can send contra and abandon instructions, exercise options on expiration.</li>
-      <li>Collaborate with the Risk Management team to build risk reporting tools from scratch, incorporating statistical analysis, covering daily/monthly reports on ADV calculation, option greeks, GICS-based sector analysis, liquidity metrics, portfolio allocation, benchmark comparisons, and risk-return ratios (Sharpe, Calmar, Sortino) across funds and strategy groups.</li>
-      <li>Created a RISKGUI for monitoring risk management metrics using Javascript.</li>
-    </ul>
+    <div class="card-header">
+      <h3 class="card-title">AlphaGrep Securities Pvt. Ltd.</h3>
+      <p class="card-meta">Python Developer | February 2024 – Present</p>
+    </div>
+    <div class="card-content">
+      <ul>
+        <li>Worked on automating the back-office operations and reconciliation process using Pandas, Polars and NumPy.</li>
+        <li>Worked with Docker, Airflow, and Redis for orchestration, and task scheduling.</li>
+        <li>Engineered an LDAP-based RBAC system for secure, audit-compliant access to database rows and internal tools.</li>
+        <li>Implemented service to apply corporate action adjustments for all major exchanges worldwide.</li>
+        <li>Build from scratch a project to help traders exercise options in American markets and take delivery of underlying futures if any. It can send contra and abandon instructions, exercise options on expiration.</li>
+        <li>Collaborate with the Risk Management team to build risk reporting tools from scratch, incorporating statistical analysis, covering daily/monthly reports on ADV calculation, option greeks, GICS-based sector analysis, liquidity metrics, portfolio allocation, benchmark comparisons, and risk-return ratios (Sharpe, Calmar, Sortino) across funds and strategy groups.</li>
+        <li>Created a RISKGUI for monitoring risk management metrics using Javascript.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="card">
-    <h3>Tikaj Technologies Pvt. Ltd.</h3>
-    <p><i>Python SDE Intern | December 2022 – December 2023</i></p>
-
-    <ul>
-      <li>Improved memory usage and web scraping speed by 250% with a modified BFS algorithm for a dark web crawler.</li>
-      <li>Developed a phishing simulation tool. Implemented an AI-driven phishing attack suggestion feature that tailored phishing attacks to individual targets making a practically impossible task at scale to be done within less than 30 seconds.</li>
-      <li>Built an AI-driven phishing template generator, reducing creation time from 90 minutes to 30 seconds.</li>
-      <li>Integrated 40 OSINT tools for efficient vulnerability detection in Tikaj’s EASM Platform.</li>
-      <li>Automated take down of phishing websites, and counterfeit apps, reducing the removal time by 59%.</li>
-    </ul>
+    <div class="card-header">
+      <h3 class="card-title">Tikaj Technologies Pvt. Ltd.</h3>
+      <p class="card-meta">Python SDE Intern | December 2022 – December 2023</p>
+    </div>
+    <div class="card-content">
+      <ul>
+        <li>Improved memory usage and web scraping speed by 250% with a modified BFS algorithm for a dark web crawler.</li>
+        <li>Developed a phishing simulation tool. Implemented an AI-driven phishing attack suggestion feature that tailored phishing attacks to individual targets making a practically impossible task at scale to be done within less than 30 seconds.</li>
+        <li>Built an AI-driven phishing template generator, reducing creation time from 90 minutes to 30 seconds.</li>
+        <li>Integrated 40 OSINT tools for efficient vulnerability detection in Tikaj's EASM Platform.</li>
+        <li>Automated take down of phishing websites, and counterfeit apps, reducing the removal time by 59%.</li>
+      </ul>
+    </div>
   </div>
-
 </div>
 
 <!-- EDUCATION -->
 <div class="section">
-  <h2>Education</h2>
+  <h2 class="section-title" data-number="03.">Education</h2>
 
   <div class="card">
-    <h3>Indian Institute of Information Technology Vadodara</h3>
-    <p>Bachelor of Technology in Computer Science Engineering</p>
-    <p>2020 – 2024 | CGPA: 9.54</p>
-    <p>🏅 Institute Rank 1 | Chairperson’s Gold Medal</p>
+    <div class="card-header">
+      <h3 class="card-title">Indian Institute of Information Technology Vadodara</h3>
+      <p class="card-meta">Bachelor of Technology in Computer Science Engineering</p>
+      <p class="card-meta">2020 – 2024 | CGPA: 9.54</p>
+    </div>
+    <span class="badge">🏅 Institute Rank 1 | Chairperson's Gold Medal</span>
   </div>
-
 </div>
 
 <!-- ACHIEVEMENTS -->
 <div class="section">
-  <h2>Achievements</h2>
+  <h2 class="section-title" data-number="04.">Achievements</h2>
 
   <div class="card">
-    <ul>
-      <li>1st prize winner of SSIP AKAM Hackathon 2022 among 2000+ teams — Developed an application for topic modelling of research papers, clustering them based on identified topics and summarizing them using bigram model and k-means.</li>
-      <li>3rd prize winner in FinHack 2 hackathon conducted by MLH.</li>
-      <li>3rd prize winner in Support-a-thon hackathon conducted by MLH.</li>
-      <li>Global Rank 1303 in Google Kick Start Round E 2021.</li>
-      <li>Global Rank 1698 in Google Kick Start Round H 2022.</li>
-      <li>More than 3000 downloads on multiple Python packages published on PyPI — including tools to summarize Daily NSE Bhav copy and backtest option strategies with GUI support.</li>
-    </ul>
+    <div class="card-content">
+      <ul>
+        <li>1st prize winner of SSIP AKAM Hackathon 2022 among 2000+ teams — Developed an application for topic modelling of research papers, clustering them based on identified topics and summarizing them using bigram model and k-means.</li>
+        <li>3rd prize winner in FinHack 2 hackathon conducted by MLH.</li>
+        <li>3rd prize winner in Support-a-thon hackathon conducted by MLH.</li>
+        <li>Global Rank 1303 in Google Kick Start Round E 2021.</li>
+        <li>Global Rank 1698 in Google Kick Start Round H 2022.</li>
+        <li>More than 3000 downloads on multiple Python packages published on PyPI — including tools to summarize Daily NSE Bhav copy and backtest option strategies with GUI support.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
 <!-- SKILLS -->
 <div class="section">
-  <h2>Skills</h2>
+  <h2 class="section-title" data-number="05.">Skills</h2>
 
-  <div class="grid">
-    <div class="skill">Python</div>
-    <div class="skill">Docker</div>
-    <div class="skill">Airflow</div>
-    <div class="skill">Redis</div>
-    <div class="skill">RabbitMQ</div>
-    <div class="skill">AWS</div>
-    <div class="skill">MySQL</div>
-    <div class="skill">MongoDB</div>
-    <div class="skill">ClickHouse</div>
-    <div class="skill">PostgreSQL</div>
+  <div class="skills-grid">
+    <div class="skill-item"><span>Python</span></div>
+    <div class="skill-item"><span>Docker</span></div>
+    <div class="skill-item"><span>Airflow</span></div>
+    <div class="skill-item"><span>Redis</span></div>
+    <div class="skill-item"><span>RabbitMQ</span></div>
+    <div class="skill-item"><span>AWS</span></div>
+    <div class="skill-item"><span>MySQL</span></div>
+    <div class="skill-item"><span>MongoDB</span></div>
+    <div class="skill-item"><span>ClickHouse</span></div>
+    <div class="skill-item"><span>PostgreSQL</span></div>
   </div>
 </div>
 
 </div>
+
+<div class="footer">
+  <p>© 2024 Ashutosh Aswani. Built with passion.</p>
+</div>
+
+<script>
+// Cursor glow effect
+const cursorGlow = document.getElementById('cursorGlow');
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function updateCursor() {
+  cursorGlow.style.left = mouseX - 100 + 'px';
+  cursorGlow.style.top = mouseY - 100 + 'px';
+  requestAnimationFrame(updateCursor);
+}
+
+document.addEventListener('mouseenter', () => {
+  cursorGlow.style.opacity = '0.5';
+  updateCursor();
+});
+
+document.addEventListener('mouseleave', () => {
+  cursorGlow.style.opacity = '0';
+});
+
+// Smooth scroll reveal
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.card, .section').forEach(el => {
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>
