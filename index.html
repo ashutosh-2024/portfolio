@@ -6,6 +6,23 @@
 <title>Ashutosh Aswani</title>
 <meta name="description" content="Ashutosh Aswani — Python Developer at AlphaGrep. Backend systems, trading infrastructure and risk analytics.">
 
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#f6f3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12110f" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ashutosh-2024.github.io/portfolio/">
+<meta property="og:title" content="Ashutosh Aswani — Python Developer at AlphaGrep">
+<meta property="og:description" content="Backend systems, trading infrastructure and risk analytics. Gold medalist, IIIT Vadodara.">
+<meta property="og:image" content="https://ashutosh-2024.github.io/portfolio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ashutosh Aswani — Python Developer at AlphaGrep">
+<meta name="twitter:description" content="Backend systems, trading infrastructure and risk analytics. Gold medalist, IIIT Vadodara.">
+<meta name="twitter:image" content="https://ashutosh-2024.github.io/portfolio/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -344,7 +361,52 @@ section { margin-bottom: 120px; scroll-margin-top: 64px; }
 .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
 
 /* Experience */
+.jobs {
+  position: relative;
+  padding-left: 36px;
+  --p: 0;
+}
+
+/* Timeline rail, filled as the reader scrolls */
+.jobs::before,
+.jobs::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 36px;
+  bottom: 36px;
+  width: 1px;
+  background: var(--line);
+}
+
+.jobs::after {
+  background: var(--accent);
+  transform-origin: top;
+  transform: scaleY(var(--p));
+}
+
+.job::before {
+  content: '';
+  position: absolute;
+  left: -13px;
+  top: 34px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--ink-3);
+  z-index: 1;
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+.job.lit::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
 .job {
+  position: relative;
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 28px;
@@ -528,8 +590,16 @@ footer {
   gap: 12px;
 }
 
-footer a { color: var(--ink-2); border-bottom: 1px solid var(--line); transition: color 0.2s, border-color 0.2s; }
-footer a:hover { color: var(--accent); border-color: var(--accent); }
+/* Underline that draws in from the left on hover */
+footer a {
+  color: var(--ink-2);
+  padding-bottom: 2px;
+  background:
+    linear-gradient(var(--accent), var(--accent)) left bottom / 0% 1px no-repeat,
+    linear-gradient(var(--line), var(--line)) left bottom / 100% 1px no-repeat;
+  transition: color 0.3s, background-size 0.45s cubic-bezier(.2,.7,.2,1);
+}
+footer a:hover { color: var(--accent); background-size: 100% 1px, 100% 1px; }
 
 /* Reveal */
 .reveal {
@@ -545,6 +615,24 @@ footer a:hover { color: var(--accent); border-color: var(--accent); }
 .side > *:nth-child(4) { animation-delay: 0.24s; }
 .side > *:nth-child(5) { animation-delay: 0.32s; }
 .side > *:nth-child(6) { animation-delay: 0.4s; }
+
+/* Name: letters rise in one by one */
+.side > .name { animation: none; }
+.name .ch {
+  display: inline-block;
+  animation: letter 0.9s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay: calc(0.1s + var(--i) * 45ms);
+}
+
+@keyframes letter {
+  from { opacity: 0; transform: translateY(0.35em) rotate(4deg); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+/* Theme switch: circular wipe from the toggle (View Transitions API) */
+.theme-switching, .theme-switching * { transition: none !important; }
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); }
@@ -572,7 +660,10 @@ footer a:hover { color: var(--accent); border-color: var(--accent); }
   .stat:nth-child(2) { border-right: 0; }
   .stat:nth-child(3) { padding-left: 0; }
   .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .jobs { padding-left: 24px; }
+  .jobs::before, .jobs::after { top: 28px; bottom: 28px; }
   .job { grid-template-columns: 1fr; gap: 6px; padding: 20px 16px; margin: 0 -16px 8px; }
+  .job::before { top: 26px; }
   .when { padding-top: 0; }
   .edu { padding: 26px 22px; }
   .edu::after { font-size: 120px; bottom: -30px; }
@@ -637,10 +728,10 @@ footer a:hover { color: var(--accent); border-color: var(--accent); }
       <p class="lede reveal">Software engineer working on <em>backend systems</em>, <em>trading infrastructure</em> and <em>risk analytics</em> — with deep roots in Python, distributed systems and data engineering. Gold medalist, Rank 1, from IIIT Vadodara.</p>
 
       <div class="stats reveal">
-        <div class="stat"><div class="v">9.54</div><div class="k">CGPA</div></div>
-        <div class="stat"><div class="v">#1</div><div class="k">Institute rank</div></div>
-        <div class="stat"><div class="v">3k+</div><div class="k">PyPI downloads</div></div>
-        <div class="stat"><div class="v">3×</div><div class="k">Hackathon podiums</div></div>
+        <div class="stat"><div class="v" data-to="9.54" data-dec="2">9.54</div><div class="k">CGPA</div></div>
+        <div class="stat"><div class="v" data-from="50" data-to="1" data-pre="#">#1</div><div class="k">Institute rank</div></div>
+        <div class="stat"><div class="v" data-to="3000" data-suf="+">3,000+</div><div class="k">PyPI downloads</div></div>
+        <div class="stat"><div class="v" data-to="3" data-suf="×">3×</div><div class="k">Hackathon podiums</div></div>
       </div>
 
       <div class="cta reveal">
@@ -658,6 +749,7 @@ footer a:hover { color: var(--accent); border-color: var(--accent); }
     <section id="experience">
       <div class="section-label reveal"><span class="num">02</span><h2>Experience</h2><span class="rule"></span></div>
 
+      <div class="jobs" id="jobs">
       <article class="job reveal">
         <div class="when">Feb 2024 —<br>Present</div>
         <div>
@@ -693,6 +785,7 @@ footer a:hover { color: var(--accent); border-color: var(--accent); }
           </div>
         </div>
       </article>
+    </div>
     </section>
 
     <section id="education">
@@ -761,11 +854,52 @@ const applyMode = () => {
 try { const saved = localStorage.getItem('theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
 applyMode();
 mq.addEventListener('change', applyMode);
-document.getElementById('themeToggle').addEventListener('click', () => {
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toggle = document.getElementById('themeToggle');
+toggle.addEventListener('click', () => {
   const next = root.dataset.mode === 'dark' ? 'light' : 'dark';
-  root.dataset.theme = next;
-  applyMode();
+  const swap = () => {
+    root.dataset.theme = next;
+    applyMode();
+  };
   try { localStorage.setItem('theme', next); } catch (e) {}
+
+  if (!document.startViewTransition || reduceMotion) { swap(); return; }
+
+  // Grow a circle from the toggle until it covers the farthest corner
+  const r = toggle.getBoundingClientRect();
+  const x = r.left + r.width / 2;
+  const y = r.top + r.height / 2;
+  const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  root.classList.add('theme-switching');
+  const vt = document.startViewTransition(swap);
+  vt.ready.then(() => {
+    root.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+      { duration: 650, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
+    );
+  });
+  vt.finished.finally(() => root.classList.remove('theme-switching'));
+});
+
+// Name: split into letters for the staggered entrance
+const nameEl = document.querySelector('.name');
+nameEl.setAttribute('aria-label', nameEl.textContent.trim());
+let li = 0;
+[nameEl, ...nameEl.querySelectorAll('em')].forEach((el) => {
+  [...el.childNodes].forEach((node) => {
+    if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) return;
+    const frag = document.createDocumentFragment();
+    for (const c of node.textContent.trim()) {
+      const span = document.createElement('span');
+      span.className = 'ch';
+      span.setAttribute('aria-hidden', 'true');
+      span.style.setProperty('--i', li++);
+      span.textContent = c;
+      frag.appendChild(span);
+    }
+    node.replaceWith(frag);
+  });
 });
 
 // Cursor spotlight
@@ -785,6 +919,56 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+// Stats: count up once when they scroll into view
+const fmt = (el, n) => {
+  const dec = +(el.dataset.dec || 0);
+  const num = n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  return (el.dataset.pre || '') + num + (el.dataset.suf || '');
+};
+const countUp = (el) => {
+  const from = +(el.dataset.from || 0);
+  const to = +el.dataset.to;
+  const dec = +(el.dataset.dec || 0);
+  const start = performance.now();
+  const dur = 1600;
+  const tick = (now) => {
+    const t = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - t, 4);
+    const v = from + (to - from) * eased;
+    el.textContent = fmt(el, dec ? v : Math.round(v));
+    if (t < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+const statIo = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('[data-to]').forEach(countUp);
+    statIo.unobserve(entry.target);
+  });
+}, { threshold: 0.5 });
+if (!reduceMotion) {
+  const stats = document.querySelector('.stats');
+  stats.querySelectorAll('[data-to]').forEach((el) => {
+    el.textContent = fmt(el, +(el.dataset.from || 0));
+  });
+  statIo.observe(stats);
+}
+
+// Experience timeline: fill the rail and light each dot as it passes mid-screen
+const jobs = document.getElementById('jobs');
+const jobEls = jobs.querySelectorAll('.job');
+const updateTimeline = () => {
+  const mid = innerHeight * 0.55;
+  const r = jobs.getBoundingClientRect();
+  const p = Math.min(Math.max((mid - r.top) / r.height, 0), 1);
+  jobs.style.setProperty('--p', p.toFixed(3));
+  jobEls.forEach((j) => j.classList.toggle('lit', j.getBoundingClientRect().top + 38 < mid));
+};
+addEventListener('scroll', updateTimeline, { passive: true });
+addEventListener('resize', updateTimeline);
+updateTimeline();
 
 // Active nav link
 const links = document.querySelectorAll('.nav a');
